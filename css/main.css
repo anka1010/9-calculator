@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap");
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+aside,
+nav,
+footer,
+header,
+section,
+main {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ul,
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+img,
+picture,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+img,
+picture {
+  display: block;
+}
+
+address {
+  font-style: normal;
+}
+
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+input,
+textarea,
+button,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button,
+input[type=submit] {
+  display: inline-block;
+  box-shadow: none;
+  background-color: transparent;
+  background: none;
+  cursor: pointer;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+label {
+  cursor: pointer;
+}
+
+legend {
+  display: block;
+}
+
+body {
+  font-family: "League Spartan", sans-serif;
+  font-size: 3.2rem;
+  height: 100vh;
+  background-color: hsl(222, 26%, 31%);
+  color: hsl(0, 0%, 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 54rem;
+  margin: 2rem;
+}
+
+.header {
+  height: 4.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.header-name {
+  font-size: 2.6rem;
+}
+
+.theme {
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 14rem;
+}
+
+.output {
+  font-size: 5rem;
+  text-align: end;
+  padding: 4rem 3.5rem;
+  margin-bottom: 2.4rem;
+  background-color: hsl(224, 36%, 15%);
+  border-radius: 0.7rem;
+}
+
+.input-grid {
+  background-color: hsl(223, 31%, 20%);
+  border-radius: 0.7rem;
+  display: grid;
+  grid-template-columns: repeat(1fr, 4);
+  grid-template-rows: repeat(1fr, 5);
+}
+
+/*# sourceMappingURL=main.css.map */

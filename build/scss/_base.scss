@@ -1,0 +1,16 @@
+body {
+  font-family: "League Spartan", sans-serif;
+  font-size: 3.2rem;
+  height: 100vh;
+  background-color: $color-primary-1;
+
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 54rem;
+  margin: 2rem;
+}
