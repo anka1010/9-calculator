@@ -153,14 +153,55 @@ body {
   margin-bottom: 2.4rem;
   background-color: hsl(224, 36%, 15%);
   border-radius: 0.7rem;
+  overflow-wrap: break-word;
 }
 
 .input-grid {
+  font-size: 4.2rem;
   background-color: hsl(223, 31%, 20%);
   border-radius: 0.7rem;
+  padding: 3rem;
   display: grid;
-  grid-template-columns: repeat(1fr, 4);
-  grid-template-rows: repeat(1fr, 5);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  column-gap: 2.5rem;
+  row-gap: 2.4rem;
+}
+.input-grid > button {
+  min-width: 10.1rem;
+  height: 6.4rem;
+  color: hsl(221, 14%, 31%);
+  background-color: hsl(30, 25%, 89%);
+  border-bottom: 4px solid hsl(28, 16%, 65%);
+  border-radius: 0.7rem;
+  transition: all 0.2s ease-in-out;
+}
+.input-grid > button:hover {
+  background-color: hsl(0, 0%, 100%);
+}
+.input-grid > .span-2 {
+  grid-column: span 2;
+}
+.input-grid > .primary, .input-grid > .accent {
+  font-size: 3rem;
+  color: hsl(0, 0%, 100%);
+  text-transform: uppercase;
+}
+.input-grid > .primary {
+  background-color: hsl(225, 21%, 49%);
+  border-bottom: 4px solid hsl(224, 28%, 35%);
+}
+.input-grid > .primary:hover {
+  background-color: hsl(225, 21%, 49%);
+  filter: brightness(1.4);
+}
+.input-grid > .accent {
+  background-color: hsl(6, 63%, 50%);
+  border-bottom: 4px solid hsl(6, 70%, 34%);
+}
+.input-grid > .accent:hover {
+  background-color: hsl(6, 63%, 50%);
+  filter: brightness(1.6);
 }
 
 /*# sourceMappingURL=main.css.map */

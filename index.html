@@ -18,26 +18,26 @@
         </div>
       </header>
       <main class="calculator">
-        <div class="output">399.981</div>
+        <div class="output" id="output">&nbsp;</div>
         <div class="input-grid">
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>del</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>+</button>
-          <button>+</button>
-          <button>2</button>
-          <button>3</button>
-          <button>-</button>
-          <button>.</button>
-          <button>0</button>
-          <button>/</button>
-          <button>x</button>
-          <button>reset</button>
-          <button>=</button>
+          <button data-number="7">7</button>
+          <button data-number="8">8</button>
+          <button data-number="9">9</button>
+          <button class="primary" data-delete>del</button>
+          <button data-number="4">4</button>
+          <button data-number="5">5</button>
+          <button data-number="6">6</button>
+          <button data-operation="+">+</button>
+          <button data-number="1">1</button>
+          <button data-number="2">2</button>
+          <button data-number="3">3</button>
+          <button data-operation="-">-</button>
+          <button data-dot>.</button>
+          <button data-number="0">0</button>
+          <button data-operation="-">/</button>
+          <button data-operation="*">x</button>
+          <button class="primary span-2" data-reset="">reset</button>
+          <button class="accent span-2" data-equal>=</button>
         </div>
       </main>
     </div>

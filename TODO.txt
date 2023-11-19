@@ -1,0 +1,36 @@
+///////////////////////////////////////////////////
+// DESIGN
+
+TODO ** numbers align center vertically inside button
+
+TODO ** on hover -> accent, primary-light - fix color
+
+TODO ** instead theme toggle => add button to copy result to clipboard
+
+TODO ** click on buttons = transform down 2px
+
+
+///////////////////////////////////////////////////
+// FUNCTIONALITY
+
+TODO ** Comments to JS
+
+TODO ** Check if there're beginning or ending '*' or '/'
+
+TODO ** Check eval + regexp ???  => refactor
+
+TODO ** output => overflow
+
+TODO ** check: 139 * 0.89 = 123.71000000000001
+               90 - 3 * 1 = 8
+
+TODO ** refactor Number() to parseFloat(
+
+TODO ** error handling - try catch, conditional chaining ???
+
+TODO ** check if ther's always one elemetn in operations, at least ['0']
+
+TODO refactor data-attribute, more general: data-operation
+)               
+
+///////////////////////////////////////////////////
