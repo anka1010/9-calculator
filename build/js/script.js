@@ -3,77 +3,85 @@
 //////////////////////////
 // CLASS
 class Calculator {
-  #operations = ["0"];
+  #expression;
 
   constructor() {
     this.reset();
   }
 
-  reset() {
-    this.#operations = ["0"]; // sequence of operands and operations to calculate
-  }
+  #addNumber(value) {
+    const currentOperand = this.#expression?.at(-1);
 
-  // Helper methods
-  #addOperand(value) {
-    const currentOperand = this.#operations?.at(-1);
-    console.log("current", currentOperand);
+    // Max amount of symbols in an operand is 15
+    if (currentOperand.length === 15) return;
 
-    // If last operand is not a number, it is an arithmetic operation => add new operand
+    // If last element is not a number, it is an arithmetic operation => add new operand
     if (isNaN(currentOperand)) {
-      this.#operations = [...this.#operations, value === "." ? "0." : value];
+      this.#expression = [...this.#expression, value === "." ? "0." : value];
       return;
     }
+
+    // Value can be: number or .
 
     // If current operand already has '.'
     if (value === "." && currentOperand.includes(".")) return;
 
+    if (value === "." && currentOperand === "") {
+      this.#expression = [...this.#expression.slice(0, -1), "0."];
+      return;
+    }
+
     // Only one leading '0'
-    if (currentOperand.at(0) === "0" && value === "0") return;
+    if (currentOperand === "0" && value === "0") return;
 
     // Add numer to current operand
-    this.#operations = [
-      ...this.#operations.slice(0, -1),
+    this.#expression = [
+      ...this.#expression.slice(0, -1),
       currentOperand === "0" && value !== "." ? value : currentOperand + value,
     ];
   }
 
   #addOperation(value) {
-    if (isNaN(this.#operations.at(-1))) return;
+    if (isNaN(this.#expression.at(-1))) return;
 
-    this.#operations = [...this.#operations, value];
+    this.#expression = [...this.#expression, value];
   }
 
   // Operations
-  addToOperations(value = "", type = "number") {
-    if (type === "number") this.#addOperand(value);
+  addToExpression(value = "", type = "number") {
+    if (type === "number") this.#addNumber(value);
 
     if (type === "operation") this.#addOperation(value);
   }
 
-  getOperations() {
-    return this.#operations
-      .reduce((acc, op) => acc + " " + op + " ", "")
-      .trim();
-  }
-
-  deleteFromOperations() {
-    let newOperations = this.#operations.join().slice(0, -1);
+  deleteFromExpression() {
+    let newOperations = this.#expression.join().slice(0, -1);
     newOperations =
       newOperations.at(-1) === "," ? newOperations.slice(0, -1) : newOperations;
 
-    this.#operations =
+    this.#expression =
       newOperations.length === 0 ? ["0"] : newOperations.split(",");
   }
 
   calculate() {
-    let newRes = this.#operations.join("").replace(/[^-\d/*+.]/g, "");
+    let newRes = this.#expression.join("").replace(/[^-\d/*+.]/g, "");
     console.log(newRes);
     if (isNaN(newRes.at(-1))) {
       newRes.slice(0, -1);
       console.log(newRes);
     }
 
-    this.#operations = [eval(newRes)];
+    this.#expression = [eval(newRes)];
+  }
+
+  reset() {
+    this.#expression = ["0"];
+  }
+
+  getOutput() {
+    return this.#expression
+      .reduce((acc, op) => acc + " " + op + " ", "")
+      .trim();
   }
 }
 
@@ -82,38 +90,38 @@ const calc = new Calculator();
 //////////////////////////
 // DOM Elements
 const output = document.querySelector("#output");
-const numbersBtn = document.querySelectorAll("[data-number]");
+const numberBtns = document.querySelectorAll("[data-number]");
 const dotBtn = document.querySelector("[data-dot]");
-const operationsBtn = document.querySelectorAll("[data-operation]");
+const operationBtns = document.querySelectorAll("[data-operation]");
 const deleteBtn = document.querySelector("[data-delete]");
 const resetBtn = document.querySelector("[data-reset]");
 const equalBtn = document.querySelector("[data-equal]");
 
 //
 function updateOutput() {
-  output.textContent = calc.getOperations();
+  output.textContent = calc.getOutput();
 }
 updateOutput();
 
 // Buttons with numbers click
-numbersBtn.forEach((btn) => {
+numberBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     if (isNaN(Number(e.target.dataset.number))) return; // FIXME - parseFloat instead of Number()
 
-    calc.addToOperations(e.target.dataset.number, "number");
+    calc.addToExpression(e.target.dataset.number, "number");
     updateOutput();
   });
 });
 
 dotBtn.addEventListener("click", () => {
-  calc.addToOperations(".", "number");
+  calc.addToExpression(".", "number");
   updateOutput();
 });
 
 // Buttons with operations
-operationsBtn.forEach((btn) =>
+operationBtns.forEach((btn) =>
   btn.addEventListener("click", () => {
-    calc.addToOperations(btn.dataset.operation, "operation");
+    calc.addToExpression(btn.dataset.operation, "operation");
     updateOutput();
   })
 );
@@ -124,7 +132,7 @@ equalBtn.addEventListener("click", () => {
 });
 
 deleteBtn.addEventListener("click", (e) => {
-  calc.deleteFromOperations();
+  calc.deleteFromExpression();
   updateOutput();
 });
 
@@ -138,16 +146,22 @@ document.addEventListener("keydown", (e) => {
   const numbersArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   const operationsArr = ["+", "-", "*", "/"];
 
-  if (numbersArr.includes(e.key)) calc.addToOperations(e.key, "number");
+  // Numbers
+  if (numbersArr.includes(e.key)) calc.addToExpression(e.key, "number");
 
-  if (e.key === ".") calc.addToOperations(".", "number");
+  // .
+  if (e.key === ".") calc.addToExpression(".", "number");
 
-  if (operationsArr.includes(e.key)) calc.addToOperations(e.key, "operation");
+  // +, -, *, /
+  if (operationsArr.includes(e.key)) calc.addToExpression(e.key, "operation");
 
-  if (e.key === "Delete" || e.key === "Backspace") calc.deleteFromOperations();
+  // Delete
+  if (e.key === "Delete" || e.key === "Backspace") calc.deleteFromExpression();
 
+  // Reset
   if (e.key === "Escape") calc.reset();
 
+  // Calculate
   if (e.key === "Enter" || e.key === "=") calc.calculate();
 
   updateOutput();
