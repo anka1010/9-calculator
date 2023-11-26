@@ -25,7 +25,7 @@ TODO ** Check eval + regexp ???  => refactor
 TODO ** check: 139 * 0.89 = 123.71000000000001
                90 - 3 * 1 = 8
 
-TODO ** refactor Number() to parseFloat() ???
+TODO ** refactor Number() to parseFloat() 
 
 TODO ** error handling - try catch, conditional chaining ???
 

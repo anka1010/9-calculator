@@ -9,6 +9,10 @@ class Calculator {
     this.reset();
   }
 
+  reset() {
+    this.#expression = ["0"];
+  }
+
   #addNumber(value) {
     const currentOperand = this.#expression?.at(-1);
 
@@ -21,7 +25,7 @@ class Calculator {
       return;
     }
 
-    // Value can be: number or .
+    // Value can be: <number> or <.>
 
     // If current operand already has '.'
     if (value === "." && currentOperand.includes(".")) return;
@@ -47,7 +51,7 @@ class Calculator {
     this.#expression = [...this.#expression, value];
   }
 
-  // Operations
+  //
   addToExpression(value = "", type = "number") {
     if (type === "number") this.#addNumber(value);
 
@@ -64,6 +68,7 @@ class Calculator {
   }
 
   calculate() {
+    // 1. Delete first and last operation, if any (+, -, *, /)
     let newRes = this.#expression.join("").replace(/[^-\d/*+.]/g, "");
     console.log(newRes);
     if (isNaN(newRes.at(-1))) {
@@ -72,10 +77,6 @@ class Calculator {
     }
 
     this.#expression = [eval(newRes)];
-  }
-
-  reset() {
-    this.#expression = ["0"];
   }
 
   getOutput() {
